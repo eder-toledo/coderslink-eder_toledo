@@ -10,13 +10,7 @@ import { ApiService } from './http.service';
 })
 export class AppComponent {
 
-  public forecasts?: WeatherForecast[];
-  
-
-  constructor(private http: HttpClient, private httpApi: ApiService) {
-    http.get<WeatherForecast[]>('/weatherforecast').subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
+  constructor(private httpApi: ApiService) {
   }
 
   onClickSubmit(data: User) {
@@ -32,13 +26,6 @@ export class AppComponent {
   }
 
   title = 'FrontEnd';
-}
-
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
 }
 
 interface User {
