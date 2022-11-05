@@ -17,7 +17,7 @@ export class AppComponent {
     
     this.httpApi.loginUser(data).subscribe({
       next: data => {
-        alert('Response by API: ' + data.message);
+        alert(`Received user: ${data.lastName} ${data.firstName} ${data.email} ` );
       },
       error: error => {
         alert('Response an error!: ' + error.message)

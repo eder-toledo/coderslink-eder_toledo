@@ -10,8 +10,8 @@ export class ApiService {
   constructor(private http: HttpClient) {
   }
   public loginUser(user: any): Observable<any> {
-    const headers = { 'content-type': 'application/json' }
+    const headers = { 'Content-Type': 'application/json' }
     let path = '/home';
-    return this.http.post<any>(path, user);
+    return this.http.post(path, user, { headers });
   }
 }

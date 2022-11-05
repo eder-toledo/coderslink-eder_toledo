@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BackEnd.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BackEnd.Controllers
 {
@@ -7,11 +8,9 @@ namespace BackEnd.Controllers
     public class HomeController : ControllerBase
     {
         [HttpPost(Name = "LoginUser")]
-        public IActionResult LoginUser()
+        public IActionResult LoginUser([FromBody] User content)
         {
-            return new OkObjectResult(new { message = "ok" });
+            return new OkObjectResult(content);
         }
-
-        
     }
 }
