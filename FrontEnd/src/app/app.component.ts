@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { ApiService } from './http.service';
+
 
 @Component({
   selector: 'app-root',
@@ -12,14 +13,22 @@ export class AppComponent {
   public forecasts?: WeatherForecast[];
   
 
-  constructor(http: HttpClient, ) {
+  constructor(private http: HttpClient, private httpApi: ApiService) {
     http.get<WeatherForecast[]>('/weatherforecast').subscribe(result => {
       this.forecasts = result;
     }, error => console.error(error));
   }
 
   onClickSubmit(data: User) {
-    alert("Entered Email id : " + data.lastName);
+    
+    this.httpApi.loginUser(data).subscribe({
+      next: data => {
+        alert('Response by API: ' + data.message);
+      },
+      error: error => {
+        alert('Response an error!: ' + error.message)
+      }
+    });
   }
 
   title = 'FrontEnd';
