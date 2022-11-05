@@ -14,4 +14,13 @@ export class ApiService {
     let path = '/home';
     return this.http.post(path, user, { headers });
   }
+
+  public getEmailList(lastName: string, order: string): Observable<any> {
+    let path = '/home/getemaillist';
+    let parameters = [];
+    lastName ? parameters.push('lastName=' + lastName) : null;
+    order ? parameters.push('order=' + order) : null;
+    path = parameters.length > 0 ? path + "?" + parameters.join("&") : path;
+    return this.http.get(path);
+  }
 }

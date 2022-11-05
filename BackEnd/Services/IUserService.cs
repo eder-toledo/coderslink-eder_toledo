@@ -7,6 +7,6 @@ namespace BackEnd.Services
         User createUser(string firstName, string lastName, string email);
         User getUser(string email);
         User updateUser(User user);
-        IEnumerable<User> getUsers();
+        IEnumerable<User> getUsers(string? firstName, string? order);
     }
 }

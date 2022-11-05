@@ -30,9 +30,15 @@ namespace BackEnd.Services
             return getUsers().First(x => x.email == email);
         }
 
-        public IEnumerable<User> getUsers()
+        public IEnumerable<User> getUsers(string? lastName = null, string? order = null)
         {
-            return userContext.GetUsers();
+            var users = (lastName != null) ? userContext.GetUsers().Where(x => x.lastName == lastName) : userContext.GetUsers();
+
+            users = (order == "desc") ?
+                users.OrderByDescending(x => x.lastName).OrderBy(x => lastName) :
+                users.OrderBy(x => x.lastName).OrderBy(x => lastName);
+            
+            return users;
         }
 
         public User updateUser(User user)

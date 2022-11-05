@@ -9,3 +9,31 @@
   <br />
   <input type="submit" value="submit" />
 </form>
+
+<div *ngIf="login">
+  <form #send="ngForm" (ngSubmit)="onClickGetData(send.value)">
+    <input type="text" name="lastName" placeholder="Last Name" ngModel />
+    <br />
+    <input type="text" name="order" placeholder="Order By" ngModel />
+    <br />
+    <input type="submit" value="submit" />
+  </form>
+</div>
+
+<div *ngIf="emailList.length > 0">
+  <h1>Email List</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Last Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of emailList">
+        <td>{{user['lastName'] ? user['lastName'] : ''}}</td>
+        <td>{{user['email'] ? user['email']: ''}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

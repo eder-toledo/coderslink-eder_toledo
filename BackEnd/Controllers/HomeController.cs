@@ -20,5 +20,12 @@ namespace BackEnd.Controllers
             var user = _userService.createUser(content.firstName, content.lastName, content.email);
             return new OkObjectResult(user);
         }
+
+        [HttpGet("[action]", Name = "GetEmailList")]
+        public IActionResult GetEmailList(string? lastName, string? order) {
+            var users = _userService.getUsers(lastName, order);
+
+            return new OkObjectResult(users);
+        }
     }
 }

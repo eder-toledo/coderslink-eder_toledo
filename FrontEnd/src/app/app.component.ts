@@ -13,14 +13,26 @@ export class AppComponent {
   constructor(private httpApi: ApiService) {
   }
 
+  emailList = [];
+  login = false;
+
   onClickSubmit(data: User) {
     
     this.httpApi.loginUser(data).subscribe({
       next: data => {
-        alert(`Received user: ${data.lastName} ${data.firstName} ${data.email} ` );
+        alert(`Received user: ${data.lastName} ${data.firstName} ${data.email} `);
+        this.login = true;
       },
       error: error => {
         alert('Response an error!: ' + error.message)
+      }
+    });
+  }
+
+  onClickGetData(data: any) {
+    this.httpApi.getEmailList(data.lastName, data.order).subscribe({
+      next: data => {
+        this.emailList = data;
       }
     });
   }
